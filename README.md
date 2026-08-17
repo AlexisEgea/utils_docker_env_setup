@@ -17,13 +17,19 @@ docker compose -f ./infra/docker/compose.yml build
 The application is interactive (keyboard input), so the service is configured with TTY enabled:
 
 ```bash
+docker compose -f ./infra/docker/compose.yml run --rm app
+```
+
+If you specifically want to use `up`, run:
+
+```bash
 docker compose -f ./infra/docker/compose.yml up app
 ```
 
-If you want the container to be removed automatically when the app stops, use:
+If you are using Git Bash on Windows and keyboard input does not work, use:
 
 ```bash
-docker compose -f ./infra/docker/compose.yml run --rm app
+winpty docker compose -f ./infra/docker/compose.yml run --rm app
 ```
 
 ### Debug with Docker
