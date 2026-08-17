@@ -1,0 +1,12 @@
+services:
+  app:
+    ports:
+      - "5678:5678"
+    volumes:
+      - ../../src:/app/src
+    command:
+      [
+        "sh",
+        "-c",
+        "pip install debugpy --root-user-action=ignore && python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 --wait-for-client src/main.py",
+      ]
