@@ -14,11 +14,14 @@ class Tracker(ABC):
 
     @abstractmethod
     def start(self) -> T:
+        """Begin the measurement process (to be implemented by subclasses)."""
         pass
-       
+
     @abstractmethod
     def stop(self) -> T:
+        """End the measurement process and return a measurement value (to be implemented by subclasses)."""
         pass
+   
 
     def measure(self, func: Callable[..., T], *args: object, **kwargs: object) -> T:
         """Execute a function, measure it, and refresh the report."""
