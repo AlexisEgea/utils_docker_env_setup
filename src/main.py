@@ -1,14 +1,15 @@
 from mathematical.factorial import Factorial
 from mathematical.binomial_coefficient import BinomialCoefficient
+from monitor.complexity_runner import ComplexityRunner
 
 def get_explanation():
     return """
     -----------------------------------------------------------------------------
-    |                          Factorial Calculator                             |
+    |                 Factorial and Binomial Coefficient Calculator             |
     | Author : Alexis EGEA                                                      |
     |                                                                           |
     | Explanation: This program can calculate the factorial of a number (n!) or |
-    | the binomial coefficient (C(n, k)).                         |
+    | the binomial coefficient (C(n, k)).                                       |
     | Enter "exit" to exit the program.                                         |
     -----------------------------------------------------------------------------"""
 
@@ -19,8 +20,9 @@ def factorial_execution():
         if n < 0:
             print("Number must be positive")
             return
-        result = factorial.apply(n)
+        result, report = complexity_runner.run(factorial.apply, n)
         print(f"{n}! = {result}")
+        print(report)
     except ValueError:
         print("Number must be a valid integer")
         return
@@ -44,7 +46,7 @@ def binomial_coefficient_execution():
     except ValueError:
         print("Number must be a valid integer")
         return
-    result = binomial_coefficient.apply(n, k)
+    result, report = complexity_runner.run(binomial_coefficient.apply, n, k)
     print(f"C({n}, {k}) = {result}")
     max_len = max(len(str(n)), len(str(k)))
     if len(str(n)) > len(str(k)):
@@ -54,11 +56,13 @@ def binomial_coefficient_execution():
     print(f"( {n} )")
     print("| " + " " * (max_len) + f" | = {result}")
     print(f"( {k} )")
+    print(report)
 
 if __name__ == "__main__":
     is_running = True
     factorial = Factorial()
     binomial_coefficient = BinomialCoefficient()
+    complexity_runner = ComplexityRunner(strict=True)
     print(get_explanation())
     while is_running:
         operation = input(
