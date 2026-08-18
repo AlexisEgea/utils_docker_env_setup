@@ -1,67 +1,26 @@
 from mathematical.factorial import Factorial
 from mathematical.binomial_coefficient import BinomialCoefficient
+from mathematical.serie import Serie
 from monitor.complexity_runner import ComplexityRunner
 
 def get_explanation():
     return """
     -----------------------------------------------------------------------------
-    |                 Factorial and Binomial Coefficient Calculator             |
+    |                    Mathematical Toolkit and Profiler                      |
     | Author : Alexis EGEA                                                      |
     |                                                                           |
-    | Explanation: This program can calculate the factorial of a number (n!) or |
-    | the binomial coefficient (C(n, k)).                                       |
+    | This program computes factorial, binomial coefficient, and custom series  |
+    | expressions (+, -, *, /, parentheses).                                    |
+    | It also prints a complexity profiler report with timing, loops, memory,   |
+    | allocations, and affectations for each execution.                         |
     | Enter "exit" to exit the program.                                         |
     -----------------------------------------------------------------------------"""
-
-def factorial_execution():
-    n = input("Enter number n= ")
-    try: 
-        n = int(n)
-        if n < 0:
-            print("Number must be positive")
-            return
-        result, report = complexity_runner.run(factorial.apply, n)
-        print(f"{n}! = {result}")
-        print(report)
-    except ValueError:
-        print("Number must be a valid integer")
-        return
-
-def binomial_coefficient_execution():
-    n = int(input("Enter number n= "))
-    try: 
-        n = int(n)
-        if n < 0:
-            print("Number must be positive")
-            return
-    except ValueError:
-        print("Number must be a valid integer")
-        return
-    k = input("Enter number k= ")
-    try: 
-        k = int(k)
-        if k < 0:
-            print("Number must be positive")
-            return
-    except ValueError:
-        print("Number must be a valid integer")
-        return
-    result, report = complexity_runner.run(binomial_coefficient.apply, n, k)
-    print(f"C({n}, {k}) = {result}")
-    max_len = max(len(str(n)), len(str(k)))
-    if len(str(n)) > len(str(k)):
-        k = str(k) + " " * (len(str(n)) - len(str(k)))
-    else:
-        n = str(n) + " " * (len(str(k)) - len(str(n)))
-    print(f"( {n} )")
-    print("| " + " " * (max_len) + f" | = {result}")
-    print(f"( {k} )")
-    print(report)
 
 if __name__ == "__main__":
     is_running = True
     factorial = Factorial()
     binomial_coefficient = BinomialCoefficient()
+    serie = Serie()
     complexity_runner = ComplexityRunner(strict=True)
     print(get_explanation())
     while is_running:
@@ -69,16 +28,20 @@ if __name__ == "__main__":
             "\nSelect an operation:\n"
             " 1. Factorial\n"
             " 2. Binomial Coefficient\n"
-            " 3. 'exit' to end the program\n\n"
+            " 3. Serie (custom expression)\n"
+            " 4. 'exit' to end the program\n\n"
             "Operation: "
         )
         if operation == "1":
             print("Factorial selected")
-            factorial_execution()
+            factorial.execute(complexity_runner)
         elif operation == "2":
             print("Binomial Coefficient selected")
-            binomial_coefficient_execution()
-        elif operation == "3" or operation == "exit":
+            binomial_coefficient.execute(complexity_runner)
+        elif operation == "3":
+            print("Serie selected")
+            serie.execute(complexity_runner)
+        elif operation == "4" or operation == "exit":
             is_running = False
         else:
             print("Invalid operation")
