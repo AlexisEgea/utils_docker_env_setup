@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+    image: app:local
+    command: python src/main.py
+    stdin_open: true
+    tty: true
