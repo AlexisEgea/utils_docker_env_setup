@@ -18,13 +18,16 @@ The core value of the project comes from the `monitoring layer`, where each exec
 
 This approach allow to analyze `complexity` and `optimization` behavior from an implementation perspective:
 
-- Factorial:
+- Factorial:  
+
 ![Application example](./documentation/factorial_example.png)  
 
 - Binomial Coefficient:
+
 ![Application example](./documentation/binomial_coefficient_example.png)
 
 - Serie: 
+
 ![Application example](./documentation/serie_example_part_1.png)
 ![Application example](./documentation/serie_example_part_2.png)
 
