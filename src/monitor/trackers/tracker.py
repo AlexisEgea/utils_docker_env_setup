@@ -67,3 +67,18 @@ class Tracker(ABC):
         if duration_ns >= 1_000:
             return f"{duration_ns / 1_000:.3f} us"
         return f"{duration_ns} ns"
+
+    @staticmethod
+    def _format_bytes(size_bytes: int) -> str:
+        abs_size = float(abs(size_bytes))
+        units = ["B", "KB", "MB", "GB", "TB"]
+        unit_index = 0
+        while abs_size >= 1024 and unit_index < len(units) - 1:
+            abs_size /= 1024
+            unit_index += 1
+        return f"{abs_size:.3f} {units[unit_index]}"
+
+    @classmethod
+    def _format_signed_bytes(cls, size_bytes: int) -> str:
+        sign = "+" if size_bytes >= 0 else "-"
+        return f"{sign}{cls._format_bytes(size_bytes)}"
