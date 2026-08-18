@@ -20,16 +20,16 @@ This approach allow to analyze `complexity` and `optimization` behavior from an 
 
 - Factorial:  
 
-![Application example](./documentation/factorial_example.png)  
+<img src="./documentation/factorial_example.png" alt="Application example" width="50%">
 
 - Binomial Coefficient:
 
-![Application example](./documentation/binomial_coefficient_example.png)
+<img src="./documentation/binomial_coefficient_example.png" alt="Application example" width="50%">
 
 - Serie: 
 
-![Application example](./documentation/serie_example_part_1.png)
-![Application example](./documentation/serie_example_part_2.png)
+<img src="./documentation/serie_example_part_1.png" alt="Application example" width="50%">
+<img src="./documentation/serie_example_part_2.png" alt="Application example" width="50%">
 
 ## Stack
 
