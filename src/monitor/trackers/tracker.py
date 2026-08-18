@@ -7,9 +7,11 @@ class Tracker(ABC):
     """Base class for all trackers."""
 
     def __init__(self):
+        """Initialize the shared report container."""
         self.report: Report = Report()
 
     def get_report(self) -> Report:
+        """Return the latest tracker report."""
         return self.report
 
     @abstractmethod
